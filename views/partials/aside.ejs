@@ -1,0 +1,155 @@
+<%- include('../partials/head.ejs')%>
+    <%- include('../partials/navbar.ejs') %>
+   
+        <aside class="main-sidebar sidebar-dark-primary elevation-4 vh-100 col-3 ">
+
+            <!-- Brand Logo -->
+            <a href="/home/" class="brand-link">
+                <img src="/img/logopm.jpeg" alt="logoPmpe" class="brand-image img-circle elevation-6"
+                    style="opacity: .8;">
+                <span class="brand-text font-weight">e-STEL</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="" class="img-circle elevation-2" alt="">
+                    </div>
+                    <div class="text-right col-11">
+                          
+
+                    </div>
+
+                </div>
+
+                <!-- SidebarSearch Form -->
+                <div class="form-inline">
+                    <div class="sidebar-search">
+                        <div>
+                            <nav class="navbar navbar-sm">
+
+                                <div class="form-inline">
+                                    <form method="POST"
+                                        action="/armasRouter/getNumeracao">
+
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control"  oninput="handleInput(event)"
+                                            required  name="numeracao" placeholder="Buscar..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                              <button class="btn btn-outline-secondary"   type="submit" type="button"><span class="fa fa-search"></span></button>
+                                            </div>
+                                          </div>
+
+                                       
+                                           
+                                           
+                                        
+                                      
+                                    </form>
+
+                                    <script>
+                                        function handleInput(e) {
+                                            var ss = e.target.selectionStart;
+                                            var se = e.target.selectionEnd;
+                                            e.target.value = e.target.value.toUpperCase();
+                                            e.target.selectionStart = ss;
+                                            e.target.selectionEnd = se;
+                                        }
+                                    </script>
+
+                            </nav>
+                        </div>
+                       
+
+                            <!-- <form method="POST" action="/contatos/matricula">
+                                
+
+                                    <input type="search" class="form-control search-menu" placeholder="Matrícula..."
+                                         name="matricula">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-danger"><i class="fa fa-search"></i></button>
+                            </form> -->
+                       
+
+                    </div>
+                    </form>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                        <li class="">
+                            <a href="#" class="nav-link active ">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Painel
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-play" aria-hidden="true"></i>
+                                <p>
+                                    Rádios
+                                    <i class="fas fa-angle-left right"></i>
+                                    <!-- <span class="badge badge-info right">6</span> -->
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/radios" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Lista de Rádios</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/armasRouter/armasOme" class="nav-link">
+                                        <i class="fa fa-home nav-icon"></i>
+                                        <p>Rádios por OME's</p>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/radios/cadRadios" class="nav-link">
+                                        <i class="fa fa-plus nav-icon"></i>
+                                        <p>Cadastrar Rádios</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Usuários
+                                    <i class="fas fa-angle-left right"></i>
+                                    <!-- <span class="badge badge-info right">6</span> -->
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/usuarios/" class="nav-link">
+                                        <i class="fa fa-plus nav-icon"></i>
+                                        <p>Adicionar Usuários</p>
+                                    </a>
+                                    <a href="/usuarios/listaUsers" class="nav-link">
+                                        <i class="fa fa-users nav-icon"></i>
+                                        <p>Usuários</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+            <%- include('../partials/cdn.ejs')%>
+
+        </aside>

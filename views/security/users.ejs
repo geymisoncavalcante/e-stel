@@ -1,0 +1,172 @@
+<%- include('../partials/head.ejs')%>
+
+    <body class="hold-transition sidebar-mini layout-fixed">
+        <div class="wrapper">
+            <!-- 
+  <------navbar-------->
+            <!-- end navbar -->
+
+            <%- include('../partials/aside.ejs')%>
+
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <!-- Content Header (Page header) -->
+                    <div class="content-header">
+
+                        <!-- /.content-header -->
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="container-fluid">
+                               
+                                    <% errors.forEach(error=>{ %>
+                                        <div class=" ">
+                                            <p class="alert alert-danger">
+                                                <%= error.message %>
+                                            </p>
+                                        </div>
+                                        <%})%>
+                                          
+
+                                                <%if(messages.error_msg){%>
+                                                    <div class="alert alert-danger">
+                                                        <%= messages.error_msg%>
+                                                    </div>
+                                                    <%}%>
+
+
+
+                                                        <div class="card">
+                                                            <div class="card-header bg-secondary">
+                                                                <div class="form-group-inline">
+                                                                    <div class="float-left">
+                                                                        <h4>Cadastrar usuários</h4>
+                                                                    </div>
+
+
+                                                                    <div class="float-right">
+                                                                        <nav
+                                                                            class="navbar navbar-light bg-secondary navbar-sm">
+
+                                                                            <div class="form-inline">
+                                                                                <form method="POST"
+                                                                                    action="/usuarios/getMatricula">
+                                                                                    <input class="form-control mr-sm-2"
+                                                                                        type="search" name="matricula"
+                                                                                        placeholder="Digite a matrícula"
+                                                                                        aria-label="matricula"
+                                                                                        maxLength="7">
+                                                                                    <button
+                                                                                        class="btn btn-success my-2 my-sm-0"
+                                                                                        type="submit">Pesquisar</button>
+                                                                                </form>
+                                                                        </nav>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body>">
+                                                                <div class="container-fluid">
+                                                                    <div class="form-group-inline">
+
+                                                                        <% if(typeof dados !='undefined' ){%>
+
+                                                                            <% dados.forEach(dado=>{%>
+
+
+                                                                                <form method="POST"
+                                                                                    action="/usuarios/insertUser">
+                                                                                    Sigla Patente
+                                                                                    <input
+                                                                                        class="form-control form-control-sm"
+                                                                                        value="<%= dado.cargo_sigla%>"
+                                                                                        name="patente" readonly>
+                                                                                    Nome de Guerra
+                                                                                    <input class="form-control"
+                                                                                        value="<%= dado.nome_guerra_sgp%>"
+                                                                                        name="nome_guerra" readonly>
+                                                                                    Cpf:
+                                                                                    <input
+                                                                                        class="form-control form-control-sm"
+                                                                                        value="<%= dado.cpf%>"
+                                                                                        name="cpf" readonly>
+                                                                                    Matrícula:
+                                                                                    <input
+                                                                                        class="form-control form-control-sm"
+                                                                                        value="<%= dado.matricula%>"
+                                                                                        name="matricula" readonly>
+
+                                                                                    tipo:
+                                                                                    <select
+                                                                                        class="form-control form-control-sm"
+                                                                                        name="tipo_usuario">
+                                                                                        <option></option>
+                                                                                        <option value="admin">
+                                                                                            Administrador
+                                                                                        </option>
+                                                                                        <option value="users">
+                                                                                            Usuário</option>
+                                                                                            <option value="pleno">Pleno</option>
+
+                                                                                    </select>
+
+
+                                                                                    <%})%>
+                                                                                        <%}%>
+                                                                                            Senha:
+                                                                                            <input
+                                                                                                class="form-control form-control-sm"
+                                                                                                type="password"
+                                                                                                name="password"
+                                                                                                maxlength="6">
+                                                                                            Confirme sua Senha:
+                                                                                            <input
+                                                                                                class="form-control form-control-sm"
+                                                                                                type="password"
+                                                                                                name="password2"
+                                                                                                maxlength="6">
+                                                                                            <br>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="card-footer">
+                                                                    <button type="submit"
+                                                                      onclick="confirm('Deseja salvar as informações?')"  class="btn btn-outline-success float-right">Salvar</button>
+                                                                    </form>
+                                                                    <a type="submit" class="btn btn-outline-dark"
+                                                                        href="/usuarios/listaUsers">Usuários</a>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                            </div>
+                        </section>
+                        <!-- right col -->
+                    </div>
+                    <!-- /.row (main row) -->
+                </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Dtec:RMB<a href="/contatos/index"></a></strong>
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0.0
+            </div>
+        </footer>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+        </div>
+
+        <!-- ./wrapper -->
+
+        <!-- jQuery -->
+
+    </body>
+
+    </html>

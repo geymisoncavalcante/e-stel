@@ -1,0 +1,245 @@
+<%- include('../partials/head.ejs') %>
+
+    <body>
+
+        <body class="hold-transition sidebar-mini layout-fixed">
+            <div class="wrapper">
+                <%- include('../partials/aside.ejs')%>
+                    <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <!-- Content Header (Page header) -->
+                        <section class="content">
+                            <div class="content-header">
+                                <div class="col-12">
+                                    <!-- Small boxes (Stat box) -->
+                                    <div class="card">
+                                        <% IdRadios.forEach(IdRadio=>{ %>
+                                            <div class="card-header bg-info">
+                                                <h2>Edição de Rádios</h2>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-2">
+
+                                                        <form method="POST"
+                                                            action="/radios/editRadios/<%= IdRadio.id_tombamento %>">
+
+                                                            <label>TOMBAMENTO</label>
+                                                            <input class="form-control form-control-sm"
+                                                                value="<%= IdRadio.id_tombamento %>" name="tombamento" required>
+                                                    </div>
+                                                    <div class="col-12 col-md-2">
+                                                        <label>SERIAL</label>
+                                                        <input class="form-control form-control-sm"
+                                                            value="<%= IdRadio.serie %>" name="serie" required>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-2">
+                                                        <label>MARCA DE RÁDIO</label>
+                                                        <select class="form-select form-select-sm" name="mradio" required>
+                                                            <option hidden value=" <%= IdRadio.id_mradio %>">
+                                                                <%= IdRadio.tmr_descricao %>
+                                                            </option>
+                                                            <% mRadios.forEach(mRadio=>{%>
+                                                                <option value="<%= mRadio.id_mradio%>">
+
+                                                                    <%= mRadio.descricao%>
+                                                                </option>
+                                                                <%})%>
+
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-2">
+                                                        <label>MODELO DE RÁDIO</label>
+                                                        <select class="form-select form-select-sm" name="modeloradio" required>
+                                                            <option hidden value="<%= IdRadio.id_modeloradio %>">
+                                                                <%= IdRadio.tm_descricao %>
+                                                            </option>
+                                                            <% modeloRadios.forEach(modeloRadio=>{%>
+                                                                <option value="<%= modeloRadio.id_modeloradio%>">
+
+                                                                    <%= modeloRadio.descricao%>
+
+                                                                </option>
+                                                                <%})%>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-2">
+                                                        <label>MARCAS DE FONTES</label>
+                                                        <select class="form-select form-select-sm" name="mfonte" required>
+                                                            <option hidden value="<%= IdRadio.id_mfonte %>">
+                                                                <%= IdRadio.tmf_descricao %>
+                                                            </option>
+                                                            <% mFontes.forEach(mFonte=>{ %>
+                                                                <option value="<%= mFonte.id_mfonte %>">
+                                                                    <%= mFonte.descricao %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-2">
+                                                        <label>TIPO EQUIPAMENTO</label>
+                                                        <select class="form-select form-select-sm" name="equipamento" required>
+                                                            <option hidden value="<%= IdRadio.id_equipamento %>">
+                                                                <%= IdRadio.te_descricao %>
+                                                            </option>
+                                                            <% tEquipamentos.forEach(tEquipamento=>{ %>
+                                                                <option value="<%= tEquipamento.id_equipamento %>">
+                                                                    <%= tEquipamento.descricao %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-2">
+                                                        <label>TIPO DE ESTAÇÃO</label>
+                                                        <select class="form-select form-select-sm" name="estacao" required>
+                                                            <option hidden value="<%= IdRadio.id_estacao %>">
+                                                                <%= IdRadio.tes_descricao %>
+                                                            </option>
+                                                            <% tEstacoes.forEach(tEstacao=>{ %>
+                                                                <option value="<%= tEstacao.id_estacao %>">
+                                                                    <%= tEstacao.descricao %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-2">
+                                                        <label>TIPO DE FREQUÊNCIA</label>
+                                                        <select class="form-select form-select-sm" name="frequencia" required>
+                                                            <option hidden value="<%= IdRadio.id_frequencia %>">
+                                                                <%= IdRadio.tf_descricao %>
+                                                            </option>
+                                                            <% tFrequencias.forEach(tFrequencia=>{ %>
+                                                                <option value="<%= tFrequencia.id_frequencia %>">
+                                                                    <%= tFrequencia.descricao %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-2">
+                                                        <label>TECNOLOGIA</label>
+                                                        <select class="form-select form-select-sm" name="tecnologia" required>
+                                                            <option hidden value="<%= IdRadio.id_tecnologia %>">
+                                                                <%= IdRadio.tt_descricao %>
+                                                            </option>
+                                                            <% tecnologias.forEach(tecnologia=>{ %>
+                                                                <option value="<%= tecnologia.id_tecnologia %>">
+                                                                    <%= tecnologia.descricao %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-2">
+                                                        <label>STATUS</label>
+                                                        <select class="form-select form-select-sm" name="statu" required>
+                                                            <option hidden value="<%= IdRadio.id_status %>">
+                                                                <%= IdRadio.ts_descricao %>
+                                                            </option>
+                                                            <% status.forEach(statu=>{ %>
+                                                                <option value="<%= statu.id_status %>">
+                                                                    <%= statu.descricao %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-2">
+                                                        <label>OME</label>
+                                                        <select class="form-select form-select-sm" required name="ome">
+                                                            <option value="<%= IdRadio.id_ome %>">
+                                                                <%= IdRadio.ome %>
+                                                            </option>
+                                                            <% Omes.forEach(Ome=>{ %>
+                                                                <option value="<%= Ome.id_organizacao %>">
+                                                                    <%= Ome.sigla %>
+                                                                </option>
+                                                            <% }) %>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-12">
+                                                        <label>MOTIVO</label>
+                                                        <input class="form-control" name="motivo"
+                                                            value="<%= IdRadio.motivo %>">
+                                                    </div>
+
+                                                    <div class="col-12 col-md-12">
+                                                        <label>SEI - SIGEP</label>
+                                                        <input class="form-control " name="sei_sigep"
+                                                            value="<%= IdRadio.sei_sigep %>">
+
+
+                                                    </div>
+
+                                                    <div class="col-12 col-md-12">
+                                                        <label>OBS</label>
+                                                        <input class="form-inline form-control" name="obs"
+                                                            value="<%= IdRadio.obs %>">
+                                                    </div>
+
+
+                                                    <% }) %>
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="card-footer bg-light">
+
+                                                <button class="btn btn-warning float-right" type="reset" value="reset"
+                                                    style="margin-left:15px;">Limpar</button>
+                                                <button class="btn btn-success float-right"
+                                                    onclick="return confirm ('Deseja Modificar os Dados?')"
+                                                    type="submit">Editar</button>
+
+                                            </div>
+
+                                            </form>
+
+                                            </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card -->
+                        </section>
+                        <!-- right col -->
+                    </div>
+                    <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+
+
+
+
+
+            </div>
+            <footer class="main-footer">
+                <%- include('../partials/footer.ejs')%>
+            </footer>
+
+
+        </body>
+
+
+
+        <!-- **************************************************************************************************** -->
+        <!-- <body>
+    <% IdRadios.forEach(IdRadio=>{ %>
+        TOMBAMENTO
+        <input class="form-control" value="<%= IdRadio.id_tombamento %>">
+        SERIAL
+        <input class="form-control" value="<%= IdRadio.serie %>">
+    <% }) %>
+
+</body> -->

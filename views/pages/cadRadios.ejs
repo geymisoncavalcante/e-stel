@@ -1,0 +1,196 @@
+<%- include('../partials/head.ejs') %>
+
+    <body>
+
+        <body class="hold-transition sidebar-mini layout-fixed">
+            <div class="wrapper">
+                <%- include('../partials/aside.ejs')%>
+                    <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <!-- Content Header (Page header) -->
+                        <section class="content">
+                            <div class="content-header">
+
+
+                                <div class="col-12">
+                                    <!-- Small boxes (Stat box) -->
+                                    <div class="card card-light">
+
+                                        <div class="card-header bg-info">
+                                            <h3>Cadastro de Rádios</h3>
+
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="form-group col-12 col-md-2">
+                                                        <label>Tombamento</label>
+                                                        <form method="POST" action="/radios/insertRadios">
+                                                            <input class="form-control form-control-sm"
+                                                                name="tombamento" id="tombamento" required>
+                                                    </div>
+                                                    <div class="form-group col-12 col-md-2">
+                                                        <label>Serial</label>
+                                                        <input class="form-control form-control-sm" name="serie" required>
+                                                    </div>
+                                                    <div class="form-group col-12 col-md-2">
+                                                        <label>Marca Rádio</label>
+                                                        <select class="form-select form-select-sm"  name="mradio" required>
+                                                            <option></option>
+                                                            <% mradios.forEach(mradio=>{ %>
+                                                                <option value="<%= mradio.id_mradio %>">
+                                                                    <%= mradio.descricao %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-12 col-md-2">
+                                                        <label>Modelo Rádio</label>
+                                                        <select class="form-select form-select-sm" name="modeloradio" required>
+                                                            <option></option>
+                                                            <% modeloradios.forEach(modeloradio=>{ %>
+                                                                <option value="<%= modeloradio.id_modeloradio%>">
+                                                                    <%= modeloradio.descricao%>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form group col-12 col-md-2">
+                                                        <label>Marca Fonte</label>
+                                                        <select class="form-select form-select-sm" name="mfonte" required>
+                                                            <option></option>
+                                                            <% marcafontes.forEach(marcafonte=>{ %>
+                                                                <option value="<%= marcafonte.id_mfonte %>">
+                                                                    <%= marcafonte.descricao %>
+                                                                </option>
+                                                                <% })%>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-12 col-md-2">
+                                                        <label>Tipo equipamento</label>
+                                                        <select class="form-select form-select-sm" name="equipamento" required>
+                                                            <option></option>
+                                                            <% equipamentos.forEach(equipamento=>{ %>
+                                                                <option value="<%= equipamento.id_equipamento %>">
+                                                                    <%= equipamento.descricao %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form group col-12 col-md-2">
+                                                        <label>Tipo Estação</label>
+                                                        <select class="form-select form-select-sm" name="estacao" required>
+                                                            <option></option>
+                                                            <% estacoes.forEach(estacao=>{ %>
+                                                                <option value="<%= estacao.id_estacao %>">
+                                                                    <%= estacao.descricao %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form group col-12 col-md-2">
+                                                        <label>Tipo Frequência</label>
+                                                        <select class="form-select form-select-sm" name="frequencia" required>
+                                                            <option></option>
+                                                            <% frequencias.forEach(frequencia=>{ %>
+                                                                <option value="<%= frequencia.id_frequencia %>">
+                                                                    <%= frequencia.descricao %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-12 col-md-2">
+                                                        <label>Tecnologia</label>
+                                                        <select class="form-select form-select-sm" name="tecnologia" required>
+                                                            <option></option>
+                                                            <% tecnologias.forEach(tecnologia=>{ %>
+                                                                <option value="<%= tecnologia.id_tecnologia %>">
+                                                                    <%= tecnologia.descricao %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-12 col-md-2">
+                                                        <label>Status</label>
+                                                        <select class="form-select form-select-sm" name="statu" required>
+                                                            <option></option>
+                                                            <% status.forEach(statu=>{ %>
+                                                                <option value="<%= statu.id_status %>">
+                                                                    <%= statu.descricao %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-12 col-md-2">
+                                                        <label>OME</label>
+                                                        <select class="form-select form-select-sm" name="ome">
+                                                            <option></option>
+                                                            <% omes.forEach(ome=>{ %>
+                                                                <option value="<%= ome.id_organizacao %>">
+                                                                    <%= ome.sigla %>
+                                                                </option>
+                                                                <% }) %>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-12 col-md-12">
+                                                        <label>MOTIVO</label>
+                                                        <textarea class="form-inline form-control textarea" name="motivo"
+                                                            placeholder="Descreva o motivo do rádio está fora de operação..."></textarea>
+                                                    </div>
+                                                    <div class="col-12 col-md-12">
+                                                        <label>SEI - SIGEP</label>
+                                                        <textarea class="form-inline form-control textarea" name="sei_sigep"
+                                                            placeholder="Informe número do Sei ou Sigepe"></textarea>
+                                                    </div>
+                                                    <div class="col-12 col-md-12">
+                                                        <label>OBS</label>
+                                                        <textarea class="form-inline form-control textarea"
+                                                            name="obs" placeholder="Informações gerais..."></textarea>
+                                                    </div>
+                                                    <div class="card-footer bg-light">
+                                                        <div class="form-preppend">
+                                                            <button class="btn btn-warning float-right" type="reset"
+                                                                value="Reset" style="margin-left: 15px;">Limpar</button>
+                                                            <button class="btn btn-success float-right"
+                                                                onclick="return confirm('Deseja Salvar?')"
+                                                                type="submit">Salvar</button>
+
+                                                        </div>
+                                                    </div>
+
+                                                    </form>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                    </div>
+                    </section>
+            </div>
+            <!-- /.card -->
+
+
+            <!-- right col -->
+            </div>
+            <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+            <footer class="main-footer">
+                <%- include('../partials/footer.ejs')%>
+            </footer>
+            <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+
+        </body>
+
+
+
+        <!-- **************************************************************************************************** -->

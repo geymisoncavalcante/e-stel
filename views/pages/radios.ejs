@@ -1,0 +1,184 @@
+<%- include('../partials/head.ejs') %>
+
+    <body>
+
+        <body class="hold-transition sidebar-mini layout-fixed">
+            <div class="wrapper">
+                <!-- 
+      <------navbar-------->
+                <!-- end navbar -->
+
+                <%- include('../partials/aside.ejs') %>
+
+                    <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <!-- Content Header (Page header) -->
+                        <section class="content">
+                            <div class="content-header">
+                                <div class="col-12">
+
+
+
+
+
+                                    <div class="card">
+                                        <div class="card-header bg-green">
+                                            <div class="form-group-inline">
+                                                <div class="float-left">
+                                                    <h4>RÁDIOS</h4>
+                                                    <h5>Total de rádios cadastrados:
+
+                                                    </h5>
+                                                </div>
+                                                <div class="float-right">
+                                                    <nav class="navbar navbar-light bg-green navbar-sm">
+
+                                                        <div class="form-inline">
+                                                            <form method="POST" action="/radios">
+
+                                                            </form>
+
+                                                            <script>
+                                                                function handleInput(e) {
+                                                                    var ss = e.target.selectionStart;
+                                                                    var se = e.target.selectionEnd;
+                                                                    e.target.value = e.target.value.toUpperCase();
+                                                                    e.target.selectionStart = ss;
+                                                                    e.target.selectionEnd = se;
+                                                                }
+                                                            </script>
+
+                                                    </nav>
+                                                </div>
+
+                                            </div>
+
+
+
+
+                                        </div>
+                                        <div>
+                                            <div class="table-responsive">
+                                                <table class="table table-hover table-responsive" id="exemplo">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>AÇÃO</th>
+                                                            <th>OME</th>
+                                                            <th>EQUIPAMENTO</th>
+                                                            <th>MARCA</th>
+                                                            <th>MODELO</th>
+                                                            <th>ESTAÇÃO</th>
+                                                            <th>TIPO FREQUÊNCIA</th>
+                                                            <th>TECNOLOGIA</th>
+                                                            <th>SERIAL</th>
+                                                            <th>TOMBAMENTO</th>
+                                                            <th>STATUS</th>
+                                                            <th>ATUALIZAÇÃO</th>
+                                                            
+
+
+                                                        </tr>
+                                                    </thead>
+                                                    <% radios.forEach(radio=> { %>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="col-1">
+
+                                                                    <a href="/radios/edit/<%= radio.id_tombamento %>"
+                                                                        class="fa fa-edit text-blue"></a>
+                                                                    <!-- middleware + rota -->
+                                                                    <a onclick="return confirm('Deseja deletar o Rádio de número <%= radio.id_tombamento %>')" href="/radios/deletRadios/<%= radio.id_tombamento %>"
+                                                                        class="fa fa-trash text-danger"></a>
+
+                                                                </td>
+
+                                                                <td>
+                                                                    <%= radio.ome %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= radio.te_descricao %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= radio.tmr_descricao %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= radio.tm_descricao %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= radio.tes_descricao %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= radio.tf_descricao %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= radio.tt_descricao %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= radio.serie %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= radio.id_tombamento %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= radio.ts_descricao %>
+                                                                </td>
+                                                                <td>
+                                                                   
+                                                                </td>
+                                                               
+
+                                                                <%= %>
+
+
+
+
+                                                            </tr>
+                                                        </tbody>
+                                                        <% }) %>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                        <div class="card-footer">
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- right col -->
+                    </div>
+                    <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+
+
+            <footer class="main-footer footer navbar-fixed-bottom ">
+                <div class="pagination justify-content-center">
+                    <nav aria-label="Page navigation example">
+
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Próxima</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- <%- include('../partials/footer.ejs')%> -->
+            </footer>
+            <!-- jQuery -->
+            <% include('../partials/cdn.ejs')%>
+
+
+        </body>
+
+
+
+
+
+        <!-- **************************************************************************************************** -->

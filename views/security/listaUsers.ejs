@@ -1,0 +1,342 @@
+<%- include('../partials/head.ejs')%>
+
+    <body class="hold-transition sidebar-mini layout-fixed">
+        <div class="wrapper">
+            <!-- 
+  <------navbar-------->
+            <!-- end navbar -->
+
+            <%- include('../partials/aside.ejs')%>
+
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <!-- Content Header (Page header) -->
+                    <div class="content-header">
+
+                        <!-- /.content-header -->
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="container-fluid">
+                                <% if(messages.success_msg){%>
+                                    <div class="alert alert-success">
+                                        <%= messages.success_msg%>
+                                    </div>
+                                    <%}%>
+
+                                        <% if(messages.delete_msg){%>
+                                            <div class="alert alert-dark">
+                                                <%= messages.delete_msg%>
+                                            </div>
+                                            <%}%>
+
+                                                <%if(messages.error_msg){%>
+                                                    <div class="alert alert-danger">
+                                                        <%= messages.error_msg%>
+                                                    </div>
+                                                    <%}%>
+
+                                                        <div class="card">
+                                                            <div class="card-header bg-secondary">
+                                                                <div class="form-group-inline">
+                                                                    <div class="float-left">
+                                                                        <h4>Lista de usuários</h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="card-body>">
+                                                                <div class="container-fluid">
+                                                                    <table class="table table-hover table-sm">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Patente</th>
+                                                                                <th>nome de Guerra</th>
+                                                                                <th>Matricula</th>
+                                                                                <th>Tipo de Usuário</th>
+                                                                                <th>CPF</th>
+                                                                                <th>atualização</th>
+
+                                                                                <th>Ações</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <% if( user_tipo === "pleno" ||  user_tipo ==="admin" ){%>
+                                                                               
+
+                                                                                <% users.forEach(user=>{%>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <%= user.patente%>
+
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%= user.nome_guerra%>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%= user.matricula%>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <div class="form-inline">
+                                                                                                <form
+                                                                                                    action="/usuarios/selectNivel/:id"
+                                                                                                    method="post">
+                                                                                                    <select
+                                                                                                        class="form-control form-control-sm col-12"
+                                                                                                        name="selectNivel">
+
+                                                                                                        <option
+                                                                                                            value="">
+                                                                                                            <%=
+                                                                                                                user.tipo_usuario%>
+                                                                                                        </option>
+                                                                                                        <!-- <option value="admin">admin</option>
+                                                                                                <option value="users">users</option> -->
+                                                                                                    </select>
+                                                                                                    <!-- <button type="submit" class="btn btn-info btn-sm">ok</button> -->
+                                                                                                </form>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%= user.cpf%>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%= user.atual%>
+                                                                                        </td>
+
+                                                                                        <td>
+
+                                                                                            <%if(user.matricula === user_mat){%>
+
+
+                                                                                                <a disabled
+                                                                                                    type="button"
+                                                                                                    class=" fa fa-trash text-dark"
+                                                                                                    data-toggle="tooltip"
+                                                                                                    data-placement="right"
+                                                                                                    title="Desativado"
+                                                                                                    style="opacity:30%">
+
+
+                                                                                                    <%}else{%>
+
+                                                                                                        <%if (user_tipo=="admin"
+                                                                                                            ){%>
+
+                                                                                                            <a href="/usuarios/delete/<%= user.id_user%>"
+                                                                                                                type="button"
+                                                                                                                data-toggle="tooltip"
+                                                                                                                data-placement="right"
+                                                                                                               hidden
+                                                                                                                title="Excluir"
+                                                                                                                onclick="return confirm('Deseja excluir o usuário  ?' +'<%= user.nome_guerra %>')"
+                                                                                                                class="fa fa-trash text-danger disabled"></a>
+
+
+
+                                                                                                            <%}else{%>
+
+                                                                                                                <a href="/usuarios/delete/<%= user.id_user%>"
+                                                                                                                    type="button"
+                                                                                                                    data-toggle="tooltip"
+                                                                                                                    data-placement="right"
+                                                                                                                    title="Excluir"
+                                                                                                                    onclick="return confirm('Deseja excluir o usuário  ?' +'<%= user.nome_guerra %>')"
+                                                                                                                    class="fa fa-trash text-danger"></a>
+                                                                                                                    
+                                                                                                                <%}%>
+                                                                                                                    <%}%>
+
+                                                                                                                        <% if(user.matricula != user_mat){%>
+                                                                                                                           
+
+                                                                                                                            |<a type="button"
+                                                                                                                                class="fa fa-edit"
+                                                                                                                                data-toggle="modal"
+                                                                                                                                data-target="#exampleModal"
+                                                                                                                                hidden
+                                                                                                                                style="opacity:30%"></a>
+                                                                                                   
+
+                                                                                                                            </a>
+                                                                                                                            <%}else if(user.matricula === user_mat){%>
+                                                                                                                                |<a type="button"
+                                                                                                                                class="fa fa-edit"
+                                                                                                                                data-toggle="modal"
+                                                                                                                                data-target="#exampleModal" ></a>
+                                                                                                                                
+                                                                                                                               
+                                                                                                                                <%}%>
+                                                                                                                                <!-- Modal -->
+                                                                                                                                <div class="modal fade"
+                                                                                                                                    id="exampleModal"
+                                                                                                                                    tabindex="-1"
+                                                                                                                                    role="dialog"
+                                                                                                                                    aria-labelledby="exampleModalLabel"
+                                                                                                                                    aria-hidden="true">
+                                                                                                                                    <div class="modal-dialog "
+                                                                                                                                        role="document">
+                                                                                                                                        <div
+                                                                                                                                            class="modal-content">
+                                                                                                                                            <div
+                                                                                                                                                class="modal-header bg-gray">
+                                                                                                                                                <h5 class="modal-title"
+                                                                                                                                                    id="exampleModalLabel">
+                                                                                                                                                    Editar
+                                                                                                                                                    usuário
+                                                                                                                                                </h5>
+                                                                                                                                                <button
+                                                                                                                                                    type="button"
+                                                                                                                                                    class="close"
+                                                                                                                                                    data-dismiss="modal"
+                                                                                                                                                    aria-label="Close">
+                                                                                                                                                    <span
+                                                                                                                                                        aria-hidden="true">&times;</span>
+                                                                                                                                                </button>
+                                                                                                                                            </div>
+                                                                                                                                            <form method="post" action="/usuarios/alterarSenha">
+                                                                                                                                            <div
+                                                                                                                                            
+                                                                                                                                                class="modal-body">
+                                                                                                                                                Patente:
+                                                                                                                                                <input
+                                                                                                                                                    class="form-control form-control-sm"
+                                                                                                                                                    disabled
+                                                                                                                                                    value="<%= user.patente%>">
+                                                                                                                                                Nome
+                                                                                                                                                de
+                                                                                                                                                Guerra
+                                                                                                                                                <input
+                                                                                                                                                    class="form-control form-control-sm"
+                                                                                                                                                    disabled
+                                                                                                                                                    value="<%= user.nome_guerra%>">
+                                                                                                                                                Cpf:
+                                                                                                                                                <input
+                                                                                                                                                    class="form-control form-control-sm"
+                                                                                                                                                    value="<%= user.cpf%>"
+                                                                                                                                                    disabled>
+                                                                                                                                                tipo
+                                                                                                                                                de
+                                                                                                                                                usuário:
+                                                                                                                                                <select
+                                                                                                                                                    class="form-select form-select-sm"
+                                                                                                                                                    aria-label="Default select example" name="selectTipo">
+
+                                                                                                                                                    <option
+                                                                                                                                                        selected
+                                                                                                                                                        class="bg-gray">
+                                                                                                                                                        <%=
+                                                                                                                                                            user.tipo_usuario%>
+                                                                                                                                                    </option>
+                                                                                                                                                    <option
+                                                                                                                                                        value="admin">
+                                                                                                                                                        admin
+                                                                                                                                                    </option>
+                                                                                                                                                    <option
+                                                                                                                                                        value="users">
+                                                                                                                                                        users
+                                                                                                                                                    </option>
+                                                                                                                                                    <option value="pleno">pleno</option>
+                                                                                                                                                </select>
+                                                                                                                                                </br>
+                                                                                                                                                <div
+                                                                                                                                                    class="form-group alert alert-secondary" name="password">
+                                                                                                                                                    Senha:
+                                                                                                                                                    <input
+                                                                                                                                                        class="form-control form-control-sm">
+                                                                                                                                                    Confirme
+                                                                                                                                                    sua
+                                                                                                                                                    senha:
+                                                                                                                                                    <input
+                                                                                                                                                        class="form-control form-control-sm" name="password2"></input>
+
+                                                                                                                                                </div>
+
+                                                                                                                                            </div>
+                                                                                                                                            <% if(messages.success_msg){%>
+                                                                                                                                                <div class="alert alert-success">
+                                                                                                                                                    <%= messages.success_msg%>
+                                                                                                                                                </div>
+                                                                                                                                                <%}%>
+                                                                                                            
+                                                                                                                                                    <% if(messages.delete_msg){%>
+                                                                                                                                                        <div class="alert alert-dark">
+                                                                                                                                                            <%= messages.delete_msg%>
+                                                                                                                                                        </div>
+                                                                                                                                                        <%}%>
+                                                                                                            
+                                                                                                                                                            <%if(messages.error_msg){%>
+                                                                                                                                                                <div class="alert alert-danger">
+                                                                                                                                                                    <%= messages.error_msg%>
+                                                                                                                                                                </div>
+                                                                                                                                                                <%}%>
+                                                                                                                                            <div
+                                                                                                                                                class="modal-footer">
+                                                                                                                                              
+                                                                                                                                                   
+                                                                                                                                                <button type="button" class="btn btn-primary btn-sm btn-block">Salvar</button>
+                                                                                                                                        </form>
+                                                                                                                                                <button type="button"  data-dismiss="modal" class="btn btn-danger btn-sm btn-block">Cancelar</button>
+                                                                                                                                            </div>
+                                                                                                                                            
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+
+
+
+                                                                                                                                <!-- _---------------------------------------------------------------------------- -->
+
+                                                                                        </td>
+
+                                                                                        <%})%>
+                                                                                            <%}else{%>
+                                                                                                </br>
+                                                                                                <div
+                                                                                                    class=" alert alert-warning">
+                                                                                                    Você não tem
+                                                                                                    Permissão!!
+                                                                                                </div>
+                                                                                                <%}%>
+                                                                                    </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-footer">
+                                                                <a href="/usuarios/"
+                                                                    class="float-right btn btn-info">Adicionar
+                                                                    usuário</a>
+                                                            </div>
+                                                        </div>
+                            </div>
+                        </section>
+                        <!-- right col -->
+                    </div>
+                    <!-- /.row (main row) -->
+                </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Dtec:RMB<a href="/contatos/index"></a></strong>
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0.0
+            </div>
+        </footer>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+        </div>
+
+        <!-- ./wrapper -->
+
+        <!-- jQuery -->
+
+    </body>
+
+    </html>
