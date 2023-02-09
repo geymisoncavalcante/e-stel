@@ -46,3 +46,9 @@
 // - git status
 // - git commit -m "mensagem"
 // - git push origin master // não funcionando o master faz o head
+
+
+//
+///
+///
+//////////////////////////////////////
